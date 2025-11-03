@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maschinenzähler – App (A/B)</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#111827">
+<style>
+  :root { --bg:#0b0f14; --fg:#e5e7eb; --muted:#9ca3af; --card:#111827; --accent:#60a5fa; }
+  html,body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;}
+  .wrap{max-width:1200px;margin:0 auto;padding:14px;}
+  .top{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px;}
+  h1{font-size:20px;margin:0 10px 0 0;}
+  .btn{background:#fff;color:#000;border:1px solid #1f2937;border-radius:12px;padding:8px 12px;font-weight:800;cursor:pointer}
+  .btn.active{outline:3px solid var(--accent);}
+  iframe{width:100%;height:calc(100vh - 80px);border:1px solid #1f2937;border-radius:14px;background:#0b0f14}
+  .note{color:var(--muted);font-size:13px;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <img src="icon-192.png" alt="" width="28" height="28" style="border-radius:6px">
+    <h1>Maschinenzähler – App</h1>
+    <button id="btnA" class="btn active">A – stabil (ohne Balken)</button>
+    <button id="btnB" class="btn">B – mit Balken</button>
+    <button id="btnInstall" class="btn" title="Als App installieren">Zum Homescreen</button>
+  </div>
+  <iframe id="frame" src="v2_2_5.html"></iframe>
+  <div class="note">Hinweis iPad: Direktes Öffnen geht. Für „Zum Homescreen hinzufügen“ braucht iOS eine Web‑Adresse (https://). Lokal geht’s meist ohne Installations‑Dialog. Alles ist hier enthalten → läuft offline.</div>
+</div>
+<script>
+  const btnA=document.getElementById('btnA');
+  const btnB=document.getElementById('btnB');
+  const frame=document.getElementById('frame');
+  btnA.onclick=()=>{ frame.src='v2_2_5.html'; btnA.classList.add('active'); btnB.classList.remove('active'); };
+  btnB.onclick=()=>{ frame.src='v2_2_6.html'; btnB.classList.add('active'); btnA.classList.remove('active'); };
+  document.getElementById('btnInstall').onclick=()=>{
+    alert('iOS: Öffne diese Seite über eine Web‑Adresse (https://) und nutze Teilen → „Zum Home‑Bildschirm“. Lokal weiter nutzbar, nur ohne Installations‑Dialog.');
+  };
+</script>
+</body>
+</html>
